@@ -16,7 +16,7 @@ from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 
 
-SCOPES = ['https://gmail.googleapis.com/']
+SCOPES = ['https://mail.google.com/']
 
 def get_service():
     creds = None
