@@ -1,7 +1,9 @@
 from dotenv import load_dotenv
 from pathlib import Path
 from telegram.ext import Updater, CommandHandler
-import bot.commands
+
+import bot.commands as commands
+import os
 
 load_dotenv(verbose=True)
 env_path = Path('.env')

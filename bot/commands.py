@@ -1,18 +1,32 @@
 from telegram import Update
 from telegram.ext import CallbackContext
-import quickstart
+
+from .quickstart import *
 
 def sendmessage(update=Update,context=CallbackContext):
 
-	service = quickstart.get_service()
-    user_id = 'me'
-    sender = 'molinahuel44@gmail.com'
-    to = 'kindermolina98@gmail.com'
-    subject = 'IMPORTANT do not delete'
-    body = 'sasageyo'
-    file = 'sample.txt'
+    mylist = []
+    mylist = context.args
+    mystring = ""
+    destino = ""
 
-    msg = quickstart.create_message_with_attachment(sender,to,subject,body,file)
-    quickstart.send_message(service,user_id,msg)
+    for i in mylist:
+        if '@' in i:
+            destino = i
+            continue
+        mystring = mystring + " "+ i
 
-	update.message.reply_text(f'Message Sent')	
+    if destino:
+
+        service = get_service()
+        user_id = 'me'
+        sender = 'molinahuel44@gmail.com'
+        to = destino  
+        subject = 'THIS IS FROM BOT'
+        body = mystring
+        file = 'bot/sample.txt'
+    
+        msg = create_message_with_attachment(sender,to,subject,body,file)
+        send_message(service,user_id,msg)
+    
+        update.message.reply_text(f'Message Sent')	
